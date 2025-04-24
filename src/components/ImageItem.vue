@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, defineEmits, ref } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 
 defineProps({
   image: {
@@ -19,11 +19,13 @@ const handleClick = (image) => {
 }
 </script>
 
-
 <template>
   <div class="image-item" :class="{ selected: isSelected }" @click="handleClick">
     <div class="image-container">
       <img :src="image.url" :alt="`Image: ${image.url}`" />
+      <div class="checkbox-overlay">
+        <input type="checkbox" :checked="isSelected" readonly />
+      </div>
       <div class="overlay">
         <p v-for="(value, key) in image.attributes" :key="key" class="animated-text">
           <strong>{{ key.replace(/_/g, ' ') }}:</strong>
@@ -36,6 +38,7 @@ const handleClick = (image) => {
 
 <style scoped>
 .image-item {
+  position: relative;
   cursor: pointer;
   border: 2px solid transparent;
   transition: border-color 0.3s ease;
@@ -47,8 +50,6 @@ const handleClick = (image) => {
 
 .image-container {
   position: relative;
-  width: 100%;
-  height: auto;
 }
 
 .image-container img {
@@ -56,6 +57,19 @@ const handleClick = (image) => {
   height: auto;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.checkbox-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+}
+
+.checkbox-overlay input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
 .overlay {

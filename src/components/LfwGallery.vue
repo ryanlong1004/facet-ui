@@ -1,16 +1,18 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useSelectedImagesStore } from '../stores/selectedImages'
 import ImageGallery from './ImageGallery.vue'
 import PaginationControls from './PaginationControls.vue'
 import LoadingOverlay from './LoadingOverlay.vue'
 
 const images = ref([])
-const selectedImages = ref([])
 const viewMode = ref('grid') // 'grid' or 'list'
 const currentPage = ref(1) // Current page number
 const totalPages = ref(1) // Total number of pages
 const pageLength = ref(12) // Number of images per page
 const loading = ref(false) // Loading state
+
+const selectedImagesStore = useSelectedImagesStore()
 
 const fetchImages = async () => {
   loading.value = true
@@ -27,19 +29,6 @@ const fetchImages = async () => {
   } finally {
     loading.value = false
   }
-}
-
-const toggleSelection = (image) => {
-  const index = selectedImages.value.findIndex((selected) => selected.url === image.url)
-  if (index === -1) {
-    selectedImages.value.push(image)
-  } else {
-    selectedImages.value.splice(index, 1)
-  }
-}
-
-const isImageSelected = (image) => {
-  return selectedImages.value.some((selected) => selected.url === image.url)
 }
 
 const goToPage = (page) => {
@@ -63,15 +52,15 @@ onMounted(() => {
       <button @click="viewMode = 'list'" :class="{ active: viewMode === 'list' }">List View</button>
     </div>
 
-    <ImageGallery :images="images" :viewMode="viewMode" :isImageSelected="isImageSelected"
-      @toggleSelection="toggleSelection" />
+    <ImageGallery :images="images" :viewMode="viewMode" :isImageSelected="selectedImagesStore.isImageSelected"
+      @toggleSelection="selectedImagesStore.toggleSelection" />
 
     <PaginationControls :currentPage="currentPage" :totalPages="totalPages" @goToPage="goToPage" />
 
     <div class="selected-images">
       <h3>Selected Images:</h3>
       <ul>
-        <li v-for="image in selectedImages" :key="image.url">{{ image.filename }}</li>
+        <li v-for="(image, index) in selectedImagesStore.selectedImages" :key="index">{{ image.face_id }}</li>
       </ul>
     </div>
   </div>
