@@ -1,0 +1,225 @@
+.horizontal-timeline-section-base {
+  padding: 10px;
+  border-bottom: 1px solid rgb(223, 223, 223);
+}
+
+.horizontal-timeline-section-base-compacted {
+  padding: 0;
+  border-bottom: 0;
+}
+
+.horizontal-timeline-name-base {
+  color: @text-dark;
+  font-size: .8em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.horizontal-timeline-name-compacted {
+  color: @text-medium;
+  font-size: .8em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.horizontal-timeline-name-subtitle-base {
+  color: @text-medium;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.horizontal-timeline-name-subtitle-base-compacted {
+  color: @text-medium;
+  font-size: .8em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.horizontal-timeline-base {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+.horizontal-timeline-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  overflow: hidden;
+  position: relative;
+
+  &__empty-notification {
+    color: @text-medium;
+    flex: 1 100%;
+    font-size: 12px;
+    font-style: italic;
+    padding: 20px 15px;
+    text-align: left;
+  }
+
+  &--padded {
+    padding: 15px;
+  }
+
+  &--left {
+    background-color: @item-grey;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+    position: absolute;
+    top: 0;
+    width: 250px;
+
+    .horizontal-timeline-container__topics-list {
+      font-size: 12px;
+      font-weight: 400;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      > li {
+        .flex-container();
+        color: @text-medium;
+        cursor: pointer;
+        margin-bottom: 8px;
+
+        > .fa-circle {
+          font-size: 8px;
+          line-height: 1;
+          margin: 0 5px 0 0;
+        }
+
+        span {
+          line-height: 1;
+        }
+
+        &.active {
+          color: darken(@primary-button-color, 10%);
+        }
+      }
+    }
+
+    // .el-tab style overrides
+    .el-tabs .el-tabs__header {
+      background-color: @box-border-grey;
+    }
+
+    .el-tabs .el-tabs__content {
+      background-color: transparent;
+    }
+
+    .el-tabs .el-tabs__header .el-tabs__nav-wrap .el-tabs__nav-scroll .el-tabs__nav .el-tabs__item {
+      font-size: 10px;
+      font-weight: 700;
+      height: 36px;
+      line-height: 36px;
+      padding: 0 10px;
+      text-transform: uppercase;
+    }
+  }
+
+  &--right {
+    flex-grow: 1;
+    max-width: calc(~'100% - 250px');
+  }
+}
+
+.horizontal-timeline-container-base {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.horizontal-timeline-tags-item-base {
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 3px;
+}
+
+.horizontal-timeline-tags-list-base {
+  border-bottom: 1px solid @box-border-grey;
+  list-style: none;
+  margin: 0;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-top: 20px;
+  transition: 0.25s;
+}
+
+.horizontal-timelines-flex-wrapper {
+  background-color: @color-base;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 33px;
+
+  .horizontal-timelines {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 100%;
+    min-height: 100%;
+
+    .el-tabs {
+      min-width: 100%;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+
+      .el-tabs__header {
+        position: sticky;
+        top: 0px;
+        z-index: 4;
+        margin: 0 0 0 0;
+      }
+
+      .el-tabs__content {
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 100%;
+
+        .el-tab-pane {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          min-height: 100%;
+          min-width: 100%;
+
+          .horizontal-timeline-container {
+            min-height: 100%;
+            min-width: 100%;
+            flex: 1;
+
+            .horizontal-timeline-container__empty-notification,
+            .horizontal-timeline-container--right {
+              min-height: 170px;
+            }
+
+            .horizontal-timeline-container--left {
+              min-height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.scrolling-timelines-container {
+  height: calc(~'100% - 5px'); // to help account for when bottom drawer is there and header of container
+  display: block;
+  overflow: hidden;
+  overflow-y: auto;
+  position: absolute;
+  width: 100%;
+}
+
+.vertical-timeline__header {
+  .flex-container();
+  .align-items-center();
+  background-color: @item-grey;
+  border-bottom: 1px solid @box-border-grey;
+}

@@ -1,0 +1,45 @@
+@import (reference) './_variables';
+@import (reference) './_mixins';
+
+.field-list {
+  table {
+    background: @color-base;
+    border: 1px solid @box-border-grey;
+    border-collapse: collapse;
+    border-radius: 0;
+    border-spacing: 0;
+    color: @text-dark;
+    font-size: 11px;
+    text-align: left;
+    width: 100%;
+
+    tr {
+      td {
+        border-top: 1px solid @box-border-grey;
+        padding: .78571429em;
+
+        &:first-child:not(.ignored) {
+          background: @background-grey;
+          border-right: 1px solid @box-border-grey;
+          font-weight: 700;
+          min-width: 130px;
+          white-space: nowrap;
+        }
+
+        &.collapsing {
+          width: 200px;
+        }
+
+        .value {
+          word-break: break-all;
+        }
+      }
+
+      &:first-child {
+        > td {
+          border-top: 0 none;
+        }
+      }
+    }
+  }
+}

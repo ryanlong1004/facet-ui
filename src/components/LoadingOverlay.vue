@@ -1,9 +1,21 @@
 <template>
-  <div class="loading-overlay">
-    <div class="spinner"></div>
-    <p>Loading images...</p>
+  <div v-if="loading"
+    class="fixed inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center z-50 pointer-events-auto">
+    <div class="w-12 h-12 border-4 border-gray-300 border-t-white rounded-full animate-spin"></div>
+    <p class="text-white mt-4">Loading images...</p>
   </div>
 </template>
+
+<script setup>
+import { defineProps } from 'vue'
+
+defineProps({
+  loading: {
+    type: Boolean,
+    required: true
+  }
+})
+</script>
 
 <style scoped>
 .loading-overlay {

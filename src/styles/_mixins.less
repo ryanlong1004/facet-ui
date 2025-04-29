@@ -1,0 +1,313 @@
+@import (reference) '_variables';
+
+.abs-pos (@top: auto, @right: auto, @bottom: auto, @left: auto) {
+  bottom: @bottom;
+  left: @left;
+  position: absolute;
+  right: @right;
+  top: @top;
+}
+
+.align-content-center() {
+  .vendor-prefix(align-content, center);
+}
+
+.align-content-start() {
+  .vendor-prefix(align-content, start);
+}
+
+.align-content-stretch() {
+  .vendor-prefix(align-content, stretch);
+}
+
+.align-items-baseline() {
+  .vendor-prefix(align-items, baseline);
+  .vendor-prefix(flex-align, baseline);
+}
+
+.align-items-center() {
+  .vendor-prefix(align-items, center);
+  .vendor-prefix(flex-align, center);
+}
+
+.align-items-end() {
+  .vendor-prefix(align-items, flex-end);
+  .vendor-prefix(flex-align, end);
+}
+
+.align-items-start() {
+  .vendor-prefix(align-items, start);
+  .vendor-prefix(flex-align, start);
+}
+
+.align-items-stretch() {
+  .vendor-prefix(align-items, stretch);
+  .vendor-prefix(flex-align, stretch);
+}
+
+.base-font() {
+  letter-spacing: 1px;
+  line-height: 1.33;
+}
+
+.base-font-alternate() {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.33;
+}
+
+.base-font-uppercase() {
+  .base-font();
+  text-transform: uppercase;
+}
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+.flex(@grow: 1, @shrink: 1, @basis: auto) {
+  .vendor-prefix(flex, @grow @shrink @basis);
+}
+
+.flex-box() {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.flex-container() {
+  .align-items-center();
+  .flex-box();
+  .flex-direction(row);
+  .justify-content-start();
+}
+
+.flex-container-between() {
+  .flex-container();
+  .justify-content-space-between();
+}
+
+.flex-container-center() {
+  .flex-container();
+  .justify-content-center();
+}
+
+.flex-container-column() {
+  .align-items-start();
+  .flex-box();
+  .flex-direction(column);
+  .justify-content-start();
+}
+
+.flex-container-end() {
+  .flex-container();
+  .justify-content-end();
+}
+
+.flex-direction(@direction) {
+  .vendor-prefix(flex-direction, @direction);
+  flex-direction: @direction;
+}
+
+.flex-flow(@direction, @wrap) {
+  .vendor-prefix(flex-direction, @direction);
+  .vendor-prefix(flex-wrap, @wrap);
+  flex-flow: @direction @wrap;
+}
+
+.flex-wrap(@wrap) {
+  .vendor-prefix(flex-wrap, @wrap);
+  flex-wrap: @wrap;
+}
+
+.font-awesome-font-icons() {
+  .abs-pos(11px, 11.5px, auto, auto);
+  font-family: @default-font-icon-family;
+  font-size: 14px;
+}
+
+.input() {
+  background-color: transparent;
+  border: 1px solid @color-tone-lighter;
+}
+
+.justify-content-center() {
+  .vendor-prefix(justify-content, center);
+}
+
+.justify-content-end() {
+  .vendor-prefix(justify-content, flex-end);
+}
+
+.justify-content-space-around() {
+  .vendor-prefix(justify-content, space-around);
+}
+
+.justify-content-space-between() {
+  .vendor-prefix(justify-content, space-between);
+}
+
+.justify-content-start() {
+  .vendor-prefix(justify-content, flex-start);
+}
+
+.medium-italics() {
+  font-weight: 500;
+  font-style: italic;
+}
+
+.rel-pos (@top: auto, @right: auto, @bottom: auto, @left: auto) {
+  bottom: @bottom;
+  left: @left;
+  position: relative;
+  right: @right;
+  top: @top;
+}
+
+.select-input {
+  .el-input {
+    .el-input__icon {
+      color: @text-dark;
+      line-height: 25px;
+    }
+
+    .el-input__inner {
+      background-color: @box-background;
+      border-radius: 0;
+      border: 1px solid @box-border-grey;
+      color: @text-dark;
+      font-size: 13px;
+      font-weight: 500;
+      height: 33px !important; // Elements UI for some reason places an important tag on this in their CSS
+      line-height: 1.33;
+      padding: 8.5px 6px 8.5px 12px;
+
+      &::placeholder,
+      &::-webkit-input-placeholder {
+        color: @text-dark;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1.33;
+      }
+
+      &:hover {
+        border-color: @color-tone;
+      }
+    }
+
+    .el-input__suffix {
+      height: 14px;
+      margin-top: 3px;
+      right: 12px;
+      top: 7px;
+
+      i {
+        height: 14px;
+        line-height: normal;
+        width: 14px;
+
+        &:first-child {
+          margin-right: 0;
+        }
+
+        &.el-icon-arrow-up {
+          font-family: @default-font-icon-family !important;
+
+          &::before {
+            content: '\f106';
+          }
+        }
+      }
+
+      .el-input__suffix-inner {
+        height: 14px;
+        width: 14px;
+      }
+    }
+
+    .el-input__icon.el-input__validateIcon {
+      line-height: 33px;
+      width: 14px;
+
+      &.el-icon-circle-close {
+        color: @color-danger;
+      }
+
+      &.el-icon-circle-check {
+        color: @color-accent;
+      }
+    }
+
+    &.is-focus {
+      .el-input__inner {
+        border-bottom: 0 none;
+        border-color: @color-tone;
+      }
+    }
+  }
+}
+
+.size (@width, @height) {
+  height: @height;
+  width: @width;
+}
+
+.min-max-height (@height) {
+  min-height: @height;
+  max-height: @height;
+}
+
+.min-max-width (@width) {
+  min-width: @width;
+  max-width: @width;
+}
+
+.vendor-prefix(@property, @value) {
+  -moz-@{property}: @value;
+  -ms-@{property}: @value;
+  @{property}: @value;
+}
+
+// Component mixins
+.storage-information {
+  width: 159.6px;
+
+  p {
+    .base-font-uppercase();
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0;
+    margin: 0 0 3.5px;
+    text-align: right;
+  }
+
+  .bar {
+    .size(100%, 3.2px);
+    background-color: @color-tone-lightest;
+    margin-bottom: 0;
+    position: relative;
+
+    &.error {
+      .bar-filling {
+        background-color: @color-alert;
+        background-image: none;
+      }
+    }
+
+    .bar-filling {
+      .abs-pos(0, auto, auto, 0);
+      background-image: @color-progress-bar;
+      height: 3.2px;
+      max-width: 159.6px;
+      min-width: 0;
+      z-index: 2;
+    }
+  }
+}

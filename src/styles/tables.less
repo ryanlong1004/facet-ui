@@ -1,0 +1,142 @@
+table,
+.el-table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  position: inherit;
+
+  th,
+  td {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  .el-table__header-wrapper {
+    .el-table__header {
+      thead {
+        tr {
+          th {
+            font-size: 10px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1.1px;
+            color: @color-base;
+            border: none;
+
+            &:nth-child(odd) {
+              background-color: @odd-header-background;
+            }
+
+            &:nth-child(even) {
+              background-color: @even-header-background;
+            }
+
+            div {
+              background-color: inherit;
+              color: inherit;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .el-table__body-wrapper {
+    table.el-table__body {
+      tbody {
+        border: none;
+
+        tr.el-table__row {
+          td {
+            border-bottom: 1px solid @placeholder-text-color;
+
+            &:nth-child(odd) {
+              background-color: @odd-column-background;
+            }
+
+            &:nth-child(even) {
+              background-color: @even-column-background;
+            }
+
+            .cell {
+              line-height: normal;
+              display: flex;
+              flex-direction: column;
+              padding-left: 16px;
+              padding-right: 16px;
+
+              .el-button {
+                font-size: 10px;
+                font-weight: 400;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .caret-wrapper {
+    .sort-caret {
+      &.ascending,
+      &.descending {
+        border: none;
+        color: @color-primary;
+        font-family: @default-font-icon-family;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 400;
+
+        &:hover {
+          color: @color-accent;
+        }
+      }
+
+      &.ascending {
+        top: 1px;
+
+        &::before {
+          content: '\f106';
+        }
+      }
+
+      &.descending {
+        bottom: 22px;
+
+        &::before {
+          content: '\f107';
+        }
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .is-sortable {
+    &.descending {
+      .sort-caret {
+        &.descending {
+          color: @color-accent;
+        }
+
+        &.ascending {
+          color: @color-primary;
+        }
+      }
+    }
+
+    &.ascending {
+      .sort-caret {
+        &.descending {
+          color: @color-primary;
+        }
+
+        &.ascending {
+          color: @color-accent;
+        }
+      }
+    }
+  }
+}

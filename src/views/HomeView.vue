@@ -3,7 +3,7 @@ import LfwGallery from '../components/LfwGallery.vue'
 </script>
 
 <template>
-  <main>
-    <LfwGallery />
-  </main>
+
+  <LfwGallery />
+
 </template>

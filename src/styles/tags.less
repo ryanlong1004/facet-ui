@@ -1,0 +1,54 @@
+.tags {
+  .flex-box();
+  .flex-direction(row);
+  .flex-wrap(wrap);
+  line-height: 1rem;
+
+  .tag {
+    .flex-box();
+    .flex-direction(row);
+    background-color: @color-accent;
+    color: @color-base;
+    font-size: 11px;
+    font-weight: 500;
+    margin-bottom: 3px;
+    margin-right: 3px;
+    padding: 2px 4px;
+
+    .has-highlight {
+      color: @color-primary;
+    }
+
+    .text {
+      .has-highlight {
+        color: @color-primary;
+      }
+    }
+
+    &.user-generated {
+      border-color: @user-generated-border;
+      background-color: @user-generated-fill;
+    }
+
+    .delete-tag-button {
+      .flex-container-center();
+      background-color: transparent;
+      border-radius: 50%;
+      border: 0 none;
+      color: @color-base;
+      cursor: pointer;
+      margin-left: 4px;
+      padding: 1px 3px;
+      text-align: center;
+      width: auto;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:hover {
+        color: @color-base;
+      }
+    }
+  }
+}

@@ -20,14 +20,15 @@ const handleClick = (image) => {
 </script>
 
 <template>
-  <div class="image-item" :class="{ selected: isSelected }" @click="handleClick">
-    <div class="image-container">
-      <img :src="image.url" :alt="`Image: ${image.url}`" />
-      <div class="checkbox-overlay">
-        <input type="checkbox" :checked="isSelected" readonly />
+  <div class="relative cursor-pointer border-2 transition-all duration-300 rounded-lg" @click="handleClick">
+    <div class="relative">
+      <img :src="image.url" :alt="`Image: ${image.url}`" class="w-full h-auto rounded-lg shadow-md" />
+      <div class="absolute top-2 left-2 z-10">
+        <input type="checkbox" :checked="isSelected" readonly class="w-5 h-5 cursor-pointer" />
       </div>
-      <div class="overlay">
-        <p v-for="(value, key) in image.attributes" :key="key" class="animated-text">
+      <div
+        class="absolute inset-0 bg-black bg-opacity-60 text-white flex flex-col justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-lg">
+        <p v-for="(value, key) in image.attributes" :key="key" class="text-sm">
           <strong>{{ key.replace(/_/g, ' ') }}:</strong>
           <span>{{ typeof value === 'number' ? `${(value * 100).toFixed(1)}%` : value }}</span>
         </p>
@@ -35,61 +36,3 @@ const handleClick = (image) => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.image-item {
-  position: relative;
-  cursor: pointer;
-  border: 2px solid transparent;
-  transition: border-color 0.3s ease;
-}
-
-.image-item.selected {
-  border-color: #007bff;
-}
-
-.image-container {
-  position: relative;
-}
-
-.image-container img {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.checkbox-overlay {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 10;
-}
-
-.checkbox-overlay input[type='checkbox'] {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: 4px;
-}
-
-.image-container:hover .overlay {
-  opacity: 1;
-}
-</style>

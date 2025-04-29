@@ -1,9 +1,11 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useSelectedImagesStore } from '../stores/selectedImages'
+import { useSelectedImagesStore } from '../store/selectedImages'
+import FaceList from './people-faces/FaceList.vue'
 import ImageGallery from './ImageGallery.vue'
 import PaginationControls from './PaginationControls.vue'
 import LoadingOverlay from './LoadingOverlay.vue'
+import PersonList from './people-faces/PersonList.vue'
 
 const images = ref([])
 const viewMode = ref('grid') // 'grid' or 'list'
@@ -15,7 +17,7 @@ const loading = ref(false) // Loading state
 const selectedImagesStore = useSelectedImagesStore()
 
 const fetchImages = async () => {
-  loading.value = true
+  loading.value = true // Set loading to true before fetching
   try {
     const response = await fetch(`http://0.0.0.0:5000/faces/?page_number=${currentPage.value}&page_length=${pageLength.value}`)
     if (!response.ok) {
@@ -23,11 +25,12 @@ const fetchImages = async () => {
     }
     const data = await response.json()
     images.value = data.faces
+    console.log(`HERE: ${data.faces}`)
     totalPages.value = data.total_pages
   } catch (error) {
     console.error('Error fetching images:', error)
   } finally {
-    loading.value = false
+    loading.value = false // Set loading to false after fetching
   }
 }
 
@@ -39,62 +42,66 @@ const goToPage = (page) => {
 }
 
 onMounted(() => {
-  fetchImages()
+  goToPage(1)
 })
 </script>
 
 <template>
-  <div>
-    <LoadingOverlay v-if="loading" />
+  <div class="wrapper">
+    <!-- Pass the loading state to the LoadingOverlay component -->
 
-    <div class="view-toggle">
-      <button @click="viewMode = 'grid'" :class="{ active: viewMode === 'grid' }">Grid View</button>
-      <button @click="viewMode = 'list'" :class="{ active: viewMode === 'list' }">List View</button>
-    </div>
 
-    <ImageGallery :images="images" :viewMode="viewMode" :isImageSelected="selectedImagesStore.isImageSelected"
-      @toggleSelection="selectedImagesStore.toggleSelection" />
+    <div class="header">() Known () Unknown A-Z ^Number of Faces Recent Re-analyze People</div>
 
-    <PaginationControls :currentPage="currentPage" :totalPages="totalPages" @goToPage="goToPage" />
+    <div class="main">
+      <PersonList :people="images" :current-page="currentPage" :pageLength="pageLength" @fetch-images="fetchImages"
+        @toggleSelection="$emit('toggleSelection', $event)" @update-page="goToPage" />
 
-    <div class="selected-images">
-      <h3>Selected Images:</h3>
-      <ul>
-        <li v-for="(image, index) in selectedImagesStore.selectedImages" :key="index">{{ image.face_id }}</li>
-      </ul>
-    </div>
+      <FaceList :faces="images" @toggleSelection="$emit('toggleSelection', $event)" />
+
+      <!-- <PaginationControls :currentPage="currentPage" :totalPages="totalPages" @goToPage="goToPage" /> -->
+    </div>"
+
+
   </div>
 </template>
 
 <style scoped>
-.view-toggle {
-  margin-bottom: 1rem;
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
-.view-toggle button {
-  margin-right: 0.5rem;
-  padding: 0.5rem 1rem;
-  border: none;
-  cursor: pointer;
-  background-color: #f0f0f0;
-  border-radius: 4px;
+.main {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 10px;
 }
 
-.view-toggle button.active {
-  background-color: #007bff;
-  color: white;
+.header {
+
+  background-color: #f8f9fa;
+  color: black;
+  padding: 20px;
+  text-align: center;
+  min-width: 100%;
+  min-height: 2vh;
 }
 
-.selected-images {
-  margin-top: 2rem;
+nav {
+  background-color: (137, 236, 163);
 }
 
-.selected-images ul {
-  list-style: none;
-  padding: 0;
-}
-
-.selected-images li {
-  margin: 0.5rem 0;
+.footer {
+  background-color: #f8f9fa;
+  padding: 20px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 </style>

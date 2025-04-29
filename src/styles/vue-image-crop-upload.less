@@ -1,0 +1,87 @@
+.vue-image-crop-upload {
+  .vicp-wrap {
+    height: 300px;
+    width: 500px;
+
+    .vicp-close {
+      .vicp-icon4 {
+        &::after,
+        &::before {
+          background-color: @background-light;
+        }
+      }
+    }
+
+    .vicp-step1 .vicp-drop-area,
+    .vicp-step3 .vicp-upload {
+      overflow: visible;
+      min-height: 200px;
+    }
+
+    .vicp-step2 {
+      .vicp-preview-item:first-child {
+        display: none;
+      }
+
+      .vicp-crop {
+        .vicp-crop-left {
+          .vicp-img-container {
+            .vicp-img {
+              max-width: none;
+            }
+          }
+        }
+
+        .vicp-crop-right {
+          .vicp-preview {
+            .vicp-preview-item {
+              img {
+                max-width: none;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .vicp-operate {
+      > a {
+        color: @text-dark;
+        font-size: 14px;
+        font-weight: 500;
+        margin-right: 10px;
+        padding-left: 0;
+        padding-right: 0;
+        text-transform: uppercase;
+        width: auto;
+
+        &:hover {
+          background-color: transparent;
+          border: 0 none;
+          color: @primary-button-color;
+          text-decoration: none;
+        }
+      }
+
+      .vicp-operate-btn {
+        background-color: @primary-button-color;
+        border-color: @primary-button-color;
+        border-radius: 0;
+        border: 0 none;
+        color: @text-lighter;
+        font-weight: bold;
+        letter-spacing: 1px;
+        line-height: 1.36;
+        margin-right: 0;
+        padding: 8px 16px;
+        width: 100px;
+
+        &:hover {
+          background-color: @primary-button-color__hover;
+          border-color: @primary-button-color__hover;
+          color: @text-lighter;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+.app-fluid-container {
+  &.page-content {
+    .app-fluid-container__section--left {
+      nav {
+        margin-top: 20px;
+        width: 100%;
+
+        a {
+          .flex-container();
+          color: @text-dark;
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 1px;
+          line-height: 1.33;
+          padding: 7px 0 7px 15px;
+          position: relative;
+          text-align: left;
+          text-transform: uppercase;
+          min-width: 150px;
+          width: 100%;
+
+          i {
+            display: inline-block;
+            font-size: 13px;
+            line-height: 1.23;
+            text-align: center;
+            width: 24px;
+
+            &.icon-box_flat {
+              font-size: 11px;
+            }
+          }
+
+          span {
+            line-height: 1.36;
+            margin-left: 2px;
+          }
+
+          &:hover {
+            color: @primary-button-color;
+            text-decoration: none;
+          }
+
+          &.active {
+            background: @color-base;
+            color: @primary-button-color;
+          }
+        }
+      }
+    }
+  }
+}

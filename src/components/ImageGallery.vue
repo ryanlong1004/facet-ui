@@ -21,28 +21,17 @@ defineEmits(['toggleSelection'])
 </script>
 
 <template>
-  <div :class="['gallery', viewMode]">
+
+  <div :class="[
+    'gap-4',
+    viewMode === 'grid' ? 'grid grid-cols-5' : 'flex flex-col'
+  ]">
+
     <ImageItem v-for="image in images" :key="image.url" :image="image" :isSelected="isImageSelected(image)"
       @select="$emit('toggleSelection', image)" />
   </div>
 </template>
 
 <style scoped>
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.gallery.grid .image-item {
-  flex: 1 1 calc(25% - 1rem);
-}
-
-.gallery.list {
-  flex-direction: column;
-}
-
-.gallery.list .image-item {
-  flex: 1 1 100%;
-}
+/* No additional styles needed as Tailwind handles layout */
 </style>
