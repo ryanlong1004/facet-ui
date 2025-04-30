@@ -19,13 +19,16 @@ const selectedImagesStore = useSelectedImagesStore()
 const fetchImages = async () => {
   loading.value = true // Set loading to true before fetching
   try {
-    const response = await fetch(`http://0.0.0.0:5000/faces/?page_number=${currentPage.value}&page_length=${pageLength.value}`)
+    // const response = await fetch(`http://0.0.0.0:5000/faces/?page_number=${currentPage.value}&page_length=${pageLength.value}`)
+    const response = await fetch(`http://0.0.0.0:5000/people/?page_number=${currentPage.value}&page_length=${pageLength.value}`)
+    // http://0.0.0.0:5000/people/?page_number=1&page_length=10
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
     const data = await response.json()
-    images.value = data.faces
-    console.log(`HERE: ${data.faces}`)
+    console.log('Data fetched:', data) // Debugging
+    images.value = data.persons
+    console.log(`HERE: ${data.persons}`)
     totalPages.value = data.total_pages
   } catch (error) {
     console.error('Error fetching images:', error)

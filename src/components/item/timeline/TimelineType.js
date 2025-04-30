@@ -1,8 +1,0 @@
-export default {
-  TAGS: 'TAGS',
-  OCR: 'OCR',
-  SPEECH_TO_TEXT: 'SPEECH_TO_TEXT',
-  TEXT: 'TEXT',
-  CAPTIONS: 'CAPTIONS',
-  ASSET_OVERVIEW: 'ASSET_OVERVIEW'
-}

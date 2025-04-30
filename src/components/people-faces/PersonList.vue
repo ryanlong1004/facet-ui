@@ -11,22 +11,22 @@
     <div class="person flex items-center gap-4 p-4 border rounded-lg cursor-pointer"
       :class="{ 'bg-blue-100': person.selected || person.person_id === selectedPersonId }"
       v-for="person in visiblePeople" :key="person.person_id" @click="handlePersonClick(person)">
-      <PersonFaceImage :image-url="person.imageUrl" :border-radius="faceBorderRadius" :height="faceHeight"
-        :width="faceWidth" />
+      <PersonFaceImage :image-url="person.image_url" />
       <div>
-        {{ person.name }}
-        <span v-if="showFaceCount" class="text-gray-500">({{ person.num_faces }})</span>
+        {{ person.person_name }}
+        <span v-if="showFaceCount" class="text-gray-500">({{ person.face_ids.length }})</span>
       </div>
     </div>
 
     <!-- Infinite Scroll Trigger -->
-    <div ref="infiniteScrollTrigger" class="h-4">X</div>
+    <div ref="infiniteScrollTrigger" class="h-4">&#8203;</div>
   </div>
 </template>
 
 <script setup>
 import { ref, watch, onMounted } from 'vue';
 import PersonFaceImage from './PersonFaceImage.vue';
+import { useSelectedPersonStore } from '@/store/selectedPerson';
 
 // Props
 const props = defineProps({
@@ -72,8 +72,13 @@ const searchQuery = ref('');
 const visiblePeople = ref([]); // People currently visible in the list
 const infiniteScrollTrigger = ref(null);
 
+// Store
+const selectedPersonStore = useSelectedPersonStore();
+
 // Methods
 const handlePersonClick = (person) => {
+  console.log('Person clicked:', person); // Debugging
+  selectedPersonStore.setSelectedPerson(person); // Save the selected person to the store
   if (props.selectable) {
     emit('on-select', person);
   }
@@ -113,6 +118,9 @@ const setupInfiniteScroll = () => {
 watch(
   () => props.people,
   () => {
+    if (!props.people || props.people.length === 0) {
+      return;
+    }
     console.log('People array length:', props.people.length);
     console.log('Current page:', props.currentPage);
     // Reset visible people and load the first page when the people array changes
