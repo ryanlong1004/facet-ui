@@ -57,7 +57,7 @@ onMounted(() => {
     <div class="header">() Known () Unknown A-Z ^Number of Faces Recent Re-analyze People</div>
 
     <div class="main">
-      <PersonList :people="images" :current-page="currentPage" :pageLength="pageLength" @fetch-images="fetchImages"
+      <PersonList :current-page="currentPage" :pageLength="pageLength" @fetch-images="fetchImages"
         @toggleSelection="$emit('toggleSelection', $event)" @update-page="goToPage" />
 
       <FaceList :faces="images" @toggleSelection="$emit('toggleSelection', $event)" />
