@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="{ 
+    :class="{
       'person-face-image-selectable': true,
       selected,
       selectable,

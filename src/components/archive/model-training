@@ -1,0 +1,9 @@
+<script>start("/Users/rlong/Sandbox/air_v1/ui-vue/src/components/model-training/");</script>
+<script>onHasParentDirectory();</script>
+<script>addRow("custom-tags","custom-tags",1,704,"704 B",1745788404,"4/27/25, 5:13:24 PM");</script>
+<script>addRow("HelpRecogPerson.vue","HelpRecogPerson.vue",0,4233,"4.1 kB",1745788404,"4/27/25, 5:13:24 PM");</script>
+<script>addRow("ModelTraining.vue","ModelTraining.vue",0,907,"907 B",1745788404,"4/27/25, 5:13:24 PM");</script>
+<script>addRow("ModelTrainingLogos.vue","ModelTrainingLogos.vue",0,15841,"15.5 kB",1745788404,"4/27/25, 5:13:24 PM");</script>
+<script>addRow("ModelTrainingPeople.vue","ModelTrainingPeople.vue",0,24270,"23.7 kB",1745788404,"4/27/25, 5:13:24 PM");</script>
+<script>addRow("people-helpers.js","people-helpers.js",0,1044,"1.0 kB",1745788404,"4/27/25, 5:13:24 PM");</script>
+<script>addRow("routes.js","routes.js",0,3918,"3.8 kB",1745788404,"4/27/25, 5:13:24 PM");</script>

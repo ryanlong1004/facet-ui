@@ -1,19 +1,16 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useSelectedFacesStore } from '../store/selectedFaces'
 import FaceList from './FaceList.vue'
 
 
 import PersonList from './PersonList.vue'
 
 const images = ref([])
-const viewMode = ref('grid') // 'grid' or 'list'
 const currentPage = ref(1) // Current page number
 const totalPages = ref(1) // Total number of pages
 const pageLength = ref(12) // Number of images per page
 const loading = ref(false) // Loading state
 
-const selectedImagesStore = useSelectedFacesStore()
 
 const fetchImages = async () => {
   loading.value = true // Set loading to true before fetching
@@ -56,7 +53,7 @@ onMounted(() => {
     <div class="header">() Known () Unknown A-Z ^Number of Faces Recent Re-analyze People</div>
 
     <div class="main">
-      <PersonList :people="images" :current-page="currentPage" :pageLength="pageLength" @fetch-images="fetchImages"
+      <PersonList :current-page="currentPage" :pageLength="pageLength" @fetch-images="fetchImages"
         @toggleSelection="$emit('toggleSelection', $event)" @update-page="goToPage" />
 
       <FaceList :faces="images" @toggleSelection="$emit('toggleSelection', $event)" />
