@@ -106,8 +106,8 @@ watch(
 </script>
 
 <style lang="less" scoped>
-@import '../../styles/_variables.less';
-@import '../../styles/_mixins.less';
+@import '../styles/_variables.less';
+@import '../styles/_mixins.less';
 
 .wrapper {
   display: flex;

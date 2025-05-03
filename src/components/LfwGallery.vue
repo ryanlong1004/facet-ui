@@ -1,11 +1,10 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useSelectedImagesStore } from '../store/selectedImages'
-import FaceList from './people-faces/FaceList.vue'
-import ImageGallery from './ImageGallery.vue'
-import PaginationControls from './PaginationControls.vue'
-import LoadingOverlay from './LoadingOverlay.vue'
-import PersonList from './people-faces/PersonList.vue'
+import { useSelectedFacesStore } from '../store/selectedFaces'
+import FaceList from './FaceList.vue'
+
+
+import PersonList from './PersonList.vue'
 
 const images = ref([])
 const viewMode = ref('grid') // 'grid' or 'list'
@@ -14,7 +13,7 @@ const totalPages = ref(1) // Total number of pages
 const pageLength = ref(12) // Number of images per page
 const loading = ref(false) // Loading state
 
-const selectedImagesStore = useSelectedImagesStore()
+const selectedImagesStore = useSelectedFacesStore()
 
 const fetchImages = async () => {
   loading.value = true // Set loading to true before fetching
